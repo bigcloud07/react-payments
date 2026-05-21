@@ -7,16 +7,18 @@ import { globalStyles } from './styles/globalStyles';
 import CardList from './pages/CardList';
 
 function App() {
+  const basename = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.BASE_URL.replace(/\/$/, '');
+
   return (
     <ThemeProvider theme={theme}>
       <Global styles={globalStyles} />
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename={basename}>
         <Routes>
-          <Route path="/" element={<Navigate to="/cards" replace />} />
+          <Route path="/" element={<Navigate to="cards" replace />} />
           <Route path="/register" element={<RegisterCard />} />
           <Route path="/complete" element={<RegisterComplete />} />
           <Route path="/cards" element={<CardList />} />
-          <Route path="*" element={<Navigate to="/cards" replace />} />
+          <Route path="*" element={<Navigate to="cards" replace />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
